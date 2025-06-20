@@ -28,6 +28,26 @@
   .gradient-text {
     @apply bg-gradient-primary bg-clip-text text-transparent;
   }
+
+  .slider {
+    @apply bg-dark-700 rounded-lg appearance-none cursor-pointer;
+  }
+
+  .slider::-webkit-slider-thumb {
+    @apply appearance-none w-3 h-3 bg-white rounded-full cursor-pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    @apply w-3 h-3 bg-white rounded-full cursor-pointer border-none;
+  }
+
+  .slider:hover::-webkit-slider-thumb {
+    @apply bg-primary-400;
+  }
+
+  .slider:hover::-moz-range-thumb {
+    @apply bg-primary-400;
+  }
 }
 
 /* Custom scrollbar */
@@ -45,4 +65,18 @@
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-primary-500;
+}
+
+/* Player animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

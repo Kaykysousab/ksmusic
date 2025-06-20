@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Menu, X, Music, Download, Smartphone } from 'lucide-react'
+import { Menu, X, Music, Search, User } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const Header: React.FC = () => {
@@ -17,15 +16,23 @@ const Header: React.FC = () => {
   }, [])
 
   const genres = [
-    { id: 'forro', name: 'FORRÓ & PISEIRO' },
-    { id: 'trap', name: 'TRAP & HIP HOP' },
-    { id: 'rock', name: 'ROCK & POP' },
-    { id: 'gospel', name: 'GOSPEL' },
-    { id: 'speedup', name: 'SPEED UP' },
-    { id: 'samba', name: 'SAMBA & ACÚSTICAS' },
-    { id: 'axe', name: 'AXÉ & BREGUADEIRA' },
-    { id: 'sertanejo', name: 'SERTANEJO' },
+    { id: 'forro', name: 'Forró & Piseiro', anchor: '#forro' },
+    { id: 'trap', name: 'Trap & Hip Hop', anchor: '#trap' },
+    { id: 'rock', name: 'Rock & Pop', anchor: '#rock' },
+    { id: 'gospel', name: 'Gospel', anchor: '#gospel' },
+    { id: 'speedup', name: 'Speed Up', anchor: '#speedup' },
+    { id: 'samba', name: 'Samba & Acústicas', anchor: '#samba' },
+    { id: 'axe', name: 'Axé & Breguadeira', anchor: '#axe' },
+    { id: 'sertanejo', name: 'Sertanejo', anchor: '#sertanejo' },
   ]
+
+  const scrollToSection = (anchor: string) => {
+    const element = document.querySelector(anchor)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+    setIsMenuOpen(false)
+  }
 
   return (
     <motion.header
@@ -38,34 +45,32 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 text-2xl font-bold gradient-text">
+          <div className="flex items-center gap-2 text-2xl font-bold gradient-text">
             <Music className="w-8 h-8" />
             KS Music
-          </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-6">
             {genres.map((genre) => (
-              <Link
+              <button
                 key={genre.id}
-                to={`/genre/${genre.id}`}
+                onClick={() => scrollToSection(genre.anchor)}
                 className="text-sm font-medium hover:text-primary-400 transition-colors duration-300 relative group"
               >
                 {genre.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
+              </button>
             ))}
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4">
-            <button className="btn-secondary">
-              <Download className="w-4 h-4" />
-              Baixar App
+            <button className="p-2 rounded-full hover:bg-dark-800 transition-colors">
+              <Search className="w-5 h-5" />
             </button>
-            <button className="btn-primary">
-              <Smartphone className="w-4 h-4" />
-              Android
+            <button className="p-2 rounded-full hover:bg-dark-800 transition-colors">
+              <User className="w-5 h-5" />
             </button>
           </div>
 
@@ -89,25 +94,14 @@ const Header: React.FC = () => {
             >
               <nav className="flex flex-col gap-4">
                 {genres.map((genre) => (
-                  <Link
+                  <button
                     key={genre.id}
-                    to={`/genre/${genre.id}`}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm font-medium hover:text-primary-400 transition-colors duration-300 py-2"
+                    onClick={() => scrollToSection(genre.anchor)}
+                    className="text-sm font-medium hover:text-primary-400 transition-colors duration-300 py-2 text-left"
                   >
                     {genre.name}
-                  </Link>
+                  </button>
                 ))}
-                <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-dark-700">
-                  <button className="btn-secondary justify-center">
-                    <Download className="w-4 h-4" />
-                    Baixar App
-                  </button>
-                  <button className="btn-primary justify-center">
-                    <Smartphone className="w-4 h-4" />
-                    Android
-                  </button>
-                </div>
               </nav>
             </motion.div>
           )}
