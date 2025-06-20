@@ -1,37 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>♥️</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-
-<body>
-  <div class="content">
-    <img src="icon app.gif" alt="logo" />
-  </div>
-  <script>
-  function fadeOutEffect() {
-  var body = document.getElementsByTagName("body")[0];
-  var fadeOut = setInterval(function () {
-    if (!body.style.opacity) {
-      body.style.opacity = 1;
-    }
-    if (body.style.opacity > 0) {
-      body.style.opacity -= 0.1;
-    } else {
-      clearInterval(fadeOut);
-      window.location.href = "./app/index.html";
-    }
-  }, 200);
-}
-
-setTimeout(function(){
-    fadeOutEffect();
-}, 3000);
-
-  </script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KS Music - Your Ultimate Music Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
